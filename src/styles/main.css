@@ -48,7 +48,7 @@ a:hover{
 
 section{
   position: relative;
-  /*top:25%;*/
+  width:45%;
   z-index: 15;
 }
 ul{
@@ -59,8 +59,9 @@ ul{
 
 li{
   list-style-type: none;
-  line-height: 20px;
+  margin: 15px 0;
   text-transform: capitalize;
+  color:white;
 }
 
 #moon{
@@ -184,8 +185,6 @@ button{
   height: 50px;
   width: 100px;
   opacity: 0;
-  -webkit-animation:fly 2s linear;
- animation:fly 2s linear;
 }
 
 .uno{

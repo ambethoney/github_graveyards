@@ -14,50 +14,38 @@ var GithubGraveyardsApp = React.createClass({
 
   getInitialState: function(){
     return {
-      userName: 'ambethoney',
-      repoName: 'Github Graveyard',
-      lastUpdate: '9.12.15',
-      repoDescription: 'an app to inspire',
-      repoUrl: 'www.ambethoney.github.io/githubgraveyard'
+     repoSource: [],
+     repoOwner:[]
     };
   },
-  componentWillMount: function(){
-
-
-  },
-
   onclick: function(){
-    $.ajax({
-      // url: 'https://api.github.com/repositories?pushed:<2011-01-01',
-      // type: 'GET',
-      // dataType: 'JSON',
-      // success: function(data){
-      //   var repo = data[0];
-      //   var repoAuthor = data[0].owner.login;
-      //   var repoDetail = data[0].description;
-      //   var repoURL = data[0].url;
-      //   var repoUpdate = data[0].updated_at;
-      // }
-
-    });
+    $.get(this.props.source, function(result){
+      var num = Math.floor(Math.random()*result.length);
+      var repoInfo = result[num];
+      this.setState({
+        repoSource: repoInfo,
+        repoOwner:repoInfo.owner
+      });
+    }.bind(this));
   },
   render: function() {
+    // repoStuff = this.state.repoSource || [];
     return (
       <div className="main">
         <div className="inner">
           <h1>Github Graveyard</h1>
           <div id="moon"></div>
           <div id="grass"></div>
-          <div id="graves">RIP Ository</div>
+          <div id="graves">RIP</div>
           <section>
             <ul>
-              <li>Author: {this.state.userName}</li>
-              <li>Project Name: {this.state.repoName}</li>
-              <li>Description: {this.state.repoDescription}</li>
-              <li><a href='{this.state.repoURL}' target="_blank">Check it out &rarr;</a></li>
+              <li><strong>User:</strong> {this.state.repoOwner.login}</li>
+              <li><strong>Repo:</strong> {this.state.repoSource.name}</li>
+              <li><strong>Description:</strong> {this.state.repoSource.description}</li>
+              <li><strong><a href='{this.state.repoSource.html_url}' target="_blank">Check it out!</a></strong></li>
             </ul>
           </section>
-          <button className="btn" onClick = {this.state.onclick}>Click for new repository!</button>
+          <button className="btn" onClick = {this.onclick}>Click for new repository!</button>
           <div id="btn-shadow"></div>
         </div>
         <img src="../images/ghost.png" className="ghost one"/>
@@ -78,6 +66,6 @@ var GithubGraveyardsApp = React.createClass({
 // var GetRepos = React.createClass({
 
 // })
-React.render(<GithubGraveyardsApp />, document.getElementById('content')); // jshint ignore:line
+React.render(<GithubGraveyardsApp source ="https://api.github.com/repositories?pushed:<2011-01-01" />, document.getElementById('content')); // jshint ignore:line
 
 module.exports = GithubGraveyardsApp;
