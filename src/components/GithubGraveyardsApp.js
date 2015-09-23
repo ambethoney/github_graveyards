@@ -18,6 +18,12 @@ var GithubGraveyardsApp = React.createClass({
      repoOwner:[]
     };
   },
+  batFly: function(){
+    $('.bat').addClass('fly');
+    setTimeout(function () {
+      $('.bat').removeClass('fly');
+    }, 2000);
+  },
   onclick: function(){
     $.get(this.props.source, function(result){
       var num = Math.floor(Math.random()*result.length);
@@ -36,16 +42,16 @@ var GithubGraveyardsApp = React.createClass({
           <h1>Github Graveyard</h1>
           <div id="moon"></div>
           <div id="grass"></div>
-          <div id="graves">RIP</div>
+          <div id="graves">RIP<br/><br/>Ository</div>
           <section>
             <ul>
               <li><strong>User:</strong> {this.state.repoOwner.login}</li>
               <li><strong>Repo:</strong> {this.state.repoSource.name}</li>
               <li><strong>Description:</strong> {this.state.repoSource.description}</li>
-              <li><strong><a href='{this.state.repoSource.html_url}' target="_blank">Check it out!</a></strong></li>
+              <li><strong><a href={this.state.repoSource.html_url} target="_blank">Check it out!</a></strong></li>
             </ul>
           </section>
-          <button className="btn" onClick = {this.onclick}>Click for new repository!</button>
+          <button className="btn" onClick = {this.onclick} onMouseEnter={this.batFly}>Click for new repository!</button>
           <div id="btn-shadow"></div>
         </div>
         <img src="../images/ghost.png" className="ghost one"/>

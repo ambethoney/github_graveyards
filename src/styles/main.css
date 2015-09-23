@@ -132,6 +132,17 @@ button{
   border-top-right-radius: 10em;
 }
 
+.fly{
+  -webkit-animation:fly 2s ease-in-out ;
+  -moz-animation:fly 2s ease-in-out ;
+  -o-animation:fly 2s ease-in-out ;
+  animation:fly 2s ease-in-out ;
+}
+
+button:hover{
+
+}
+
 #btn-shadow{
   width: 120px;
   height: 128px;
@@ -178,10 +189,10 @@ button{
 }
 
 .bat{
-  position: absolute;
+  position: relative;
   z-index: 15;
-  left:600px;
-  top:460px;
+  bottom:200px;
+  right:25px;
   height: 50px;
   width: 100px;
   opacity: 0;
