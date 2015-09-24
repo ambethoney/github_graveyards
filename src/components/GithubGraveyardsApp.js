@@ -15,7 +15,7 @@ var GithubGraveyardsApp = React.createClass({
   getInitialState: function(){
     return {
      repoSource: [],
-     repoOwner:[]
+     repoOwner: []
     };
   },
   batFly: function(){
@@ -26,11 +26,11 @@ var GithubGraveyardsApp = React.createClass({
   },
   onclick: function(){
     $.get(this.props.source, function(result){
-      var num = Math.floor(Math.random()*result.length);
+      var num = Math.floor(Math.random() * result.length);
       var repoInfo = result[num];
       this.setState({
         repoSource: repoInfo,
-        repoOwner:repoInfo.owner
+        repoOwner: repoInfo.owner
       });
     }.bind(this));
   },
